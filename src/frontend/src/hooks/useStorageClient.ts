@@ -1,0 +1,38 @@
+import { loadConfig } from "@caffeineai/core-infrastructure";
+import { StorageClient } from "@caffeineai/object-storage";
+import { HttpAgent } from "@icp-sdk/core/agent";
+import { useEffect, useMemo, useState } from "react";
+import { useInternetIdentity } from "./useInternetIdentity";
+
+export function useStorageClient(bucket: string) {
+  const { identity } = useInternetIdentity();
+  const [config, setConfig] = useState<{
+    storage_gateway_url: string;
+    backend_canister_id: string;
+    project_id: string;
+    backend_host?: string;
+  } | null>(null);
+
+  useEffect(() => {
+    loadConfig().then(setConfig);
+  }, []);
+
+  const storageClient = useMemo(() => {
+    if (!config) return null;
+    // Only create storage client when user has a real authenticated identity
+    if (!identity || identity.getPrincipal().isAnonymous()) return null;
+    const agent = new HttpAgent({
+      identity,
+      host: config.backend_host,
+    });
+    return new StorageClient(
+      bucket,
+      config.storage_gateway_url,
+      config.backend_canister_id,
+      config.project_id,
+      agent,
+    );
+  }, [identity, config, bucket]);
+
+  return storageClient;
+}

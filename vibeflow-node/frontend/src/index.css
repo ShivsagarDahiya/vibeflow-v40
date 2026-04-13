@@ -1,0 +1,350 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Love theme core tokens */
+    --color-primary: #e91e63;
+    --color-primary-light: #f06292;
+    --color-gold: #f4a460;
+    --color-gold-light: #ffd180;
+    --color-dark: #0a0a0f;
+    --color-surface: #12121a;
+    --color-surface-high: #1e1e2a;
+    --color-surface-higher: #252535;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-text: #f5f5f7;
+    --color-text-muted: rgba(255, 255, 255, 0.55);
+
+    /* Gradients */
+    --gradient-love: linear-gradient(135deg, #e91e63, #880e4f);
+    --gradient-love-soft: linear-gradient(135deg, #e91e63aa, #f06292aa);
+    --gradient-gold: linear-gradient(135deg, #f4a460, #e8935a);
+    --gradient-dark: linear-gradient(180deg, transparent, #0a0a0f);
+    --gradient-dark-top: linear-gradient(0deg, transparent, #0a0a0f 80%);
+    --gradient-video-overlay: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+    --gradient-header: linear-gradient(to bottom, rgba(10,10,15,0.9) 0%, transparent 100%);
+
+    /* Shadows */
+    --shadow-love: 0 0 20px rgba(233, 30, 99, 0.4);
+    --shadow-gold: 0 0 20px rgba(244, 164, 96, 0.4);
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+    --shadow-tab: 0 -1px 0 rgba(255,255,255,0.06);
+
+    /* Font families */
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "SF Mono", "Fira Code", monospace;
+
+    /* Border radius */
+    --radius-sm: 0.5rem;
+    --radius: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Timing */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease;
+
+    /* Safe areas */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  html {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-body);
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    min-height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background-color: rgba(233, 30, 99, 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@layer components {
+  /* Love theme gradient text */
+  .text-gradient-love {
+    background: var(--gradient-love);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass morphism cards */
+  .glass {
+    background: rgba(30, 30, 42, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-dark {
+    background: rgba(10, 10, 15, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Love glow button */
+  .btn-love {
+    background: var(--gradient-love);
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-love);
+  }
+
+  .btn-love:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 32px rgba(233, 30, 99, 0.6);
+  }
+
+  .btn-love:active {
+    transform: translateY(0);
+  }
+
+  /* Gold premium button */
+  .btn-gold {
+    background: var(--gradient-gold);
+    color: #0a0a0f;
+    font-family: var(--font-body);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Tab bar */
+  .tab-bar {
+    background: rgba(12, 12, 20, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: var(--shadow-tab);
+  }
+
+  /* Video overlay */
+  .video-overlay {
+    background: var(--gradient-video-overlay);
+  }
+
+  /* Header overlay */
+  .header-overlay {
+    background: var(--gradient-header);
+  }
+
+  /* Story ring active */
+  .story-ring {
+    background: var(--gradient-love);
+    padding: 2px;
+    border-radius: 50%;
+  }
+
+  .story-ring-viewed {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px;
+    border-radius: 50%;
+  }
+
+  /* Notification dot */
+  .notif-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    border: 2px solid var(--color-dark);
+  }
+
+  /* Message bubble sent */
+  .bubble-sent {
+    background: var(--gradient-love);
+    border-radius: 18px 18px 4px 18px;
+  }
+
+  /* Message bubble received */
+  .bubble-received {
+    background: var(--color-surface-high);
+    border-radius: 18px 18px 18px 4px;
+  }
+}
+
+@layer utilities {
+  /* Scrollbar hide */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Snap scroll */
+  .snap-mandatory {
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
+  .snap-center {
+    scroll-snap-align: center;
+  }
+
+  /* Font families */
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  /* Safe area padding */
+  .pt-safe {
+    padding-top: var(--safe-top);
+  }
+
+  .pb-safe {
+    padding-bottom: var(--safe-bottom);
+  }
+
+  .pb-tab {
+    padding-bottom: calc(5rem + var(--safe-bottom));
+  }
+
+  /* Shimmer skeleton */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-surface) 25%,
+      var(--color-surface-high) 50%,
+      var(--color-surface) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  /* Love glow */
+  .glow-love {
+    box-shadow: var(--shadow-love);
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Gradient border */
+  .border-gradient-love {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .border-gradient-love::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-love);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Touch action */
+  .touch-none {
+    touch-action: none;
+  }
+
+  .touch-pan-y {
+    touch-action: pan-y;
+  }
+
+  /* Active tab indicator */
+  .tab-active {
+    color: var(--color-primary);
+  }
+
+  /* Truncate multiline */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Transition utilities */
+  .transition-smooth {
+    transition: all var(--transition-base);
+  }
+
+  /* VIP gradient border for premium avatars */
+  .vip-ring {
+    background: linear-gradient(135deg, #f4a460, #e91e63, #f4a460);
+    background-size: 200%;
+    animation: gradientShift 4s ease infinite;
+    padding: 2px;
+    border-radius: 50%;
+  }
+}

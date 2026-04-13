@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "canisters": {
+    "vibeflow_backend": {
+      "type": "motoko",
+      "main": "vibeflow-node/backend/main.mo",
+      "declarations": {
+        "output": "vibeflow-node/frontend/src/declarations/vibeflow_backend"
+      }
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "mops sources"
+    }
+  }
+}

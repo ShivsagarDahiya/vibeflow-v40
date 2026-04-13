@@ -1,0 +1,338 @@
+// Version: 1.0.0
+type ActivityStatus__152715502 = {lastSeen : Int; status : Text};
+type CallSignal__716495205 =
+  {
+    callType : Text;
+    callee : Principal;
+    caller : Principal;
+    createdAt : Int;
+    id : Text;
+    payload : Text;
+    signalType : Text
+  };
+type Comment__473346131 =
+  {
+    author : Principal;
+    createdAt : Int;
+    id : Text;
+    text : Text;
+    videoId : Text
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Duet__858239070 =
+  {
+    caption : Text;
+    createdAt : Int;
+    creator : Principal;
+    id : Text;
+    originalVideoId : Text;
+    thumbnailKey : Text;
+    videoKey : Text
+  };
+type FollowRequest__661292758 =
+  {createdAt : Int; from : Principal; id : Text; to : Principal};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Match__564601088 =
+  {createdAt : Int; id : Text; user1 : Principal; user2 : Principal};
+type MessageReaction__746841266 =
+  {
+    createdAt : Int;
+    emoji : Text;
+    id : Text;
+    messageId : Text;
+    sender : Principal
+  };
+type Message__19119041 =
+  {
+    conversationId : Text;
+    createdAt : Int;
+    id : Text;
+    sender : Principal;
+    text : Text
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Notification__879889657 =
+  {
+    createdAt : Int;
+    id : Text;
+    notifType : Text;
+    read : Bool;
+    recipient : Principal;
+    sender : Principal;
+    videoId : ?Text
+  };
+type PinnedMessage__707970224 =
+  {conversationId : Text; messageId : Text; pinnedAt : Int};
+type Post__955439577 =
+  {
+    caption : Text;
+    createdAt : Int;
+    creator : Principal;
+    hashtags : [Text];
+    id : Text;
+    imageKey : Text
+  };
+type ReelDraft__569559091 =
+  {
+    createdAt : Int;
+    creator : Principal;
+    description : Text;
+    hashtags : Text;
+    id : Text;
+    thumbnailKey : Text;
+    title : Text;
+    videoKey : Text
+  };
+type Report__89520890 =
+  {
+    createdAt : Int;
+    id : Text;
+    reason : Text;
+    reporter : Principal;
+    videoId : Text
+  };
+type StoryComment__360357830 =
+  {
+    author : Principal;
+    createdAt : Int;
+    id : Text;
+    storyId : Text;
+    text : Text
+  };
+type StoryReaction__237662789 =
+  {
+    createdAt : Int;
+    emoji : Text;
+    id : Text;
+    storyId : Text;
+    user : Principal
+  };
+type Story__270542992 =
+  {
+    caption : Text;
+    createdAt : Int;
+    creator : Principal;
+    expiresAt : Int;
+    id : Text;
+    mediaKey : Text;
+    mediaType : Text
+  };
+type UserProfile__491224006 =
+  {
+    avatarKey : Text;
+    bio : Text;
+    createdAt : Int;
+    principal : Principal;
+    username : Text
+  };
+type UserRole__1054455867 = {#admin; #guest; #user};
+type UserSettings__590554603 =
+  {
+    activityStatusVisible : Bool;
+    ageRestriction : Bool;
+    autoPlayVideos : Bool;
+    blockedHashtags : Text;
+    blockedUsers : Text;
+    contentFilter : Text;
+    dmPrivacy : Text;
+    emailNotifications : Bool;
+    isPrivate : Bool;
+    language : Text;
+    muteNotificationSound : Bool;
+    notificationsEnabled : Bool;
+    pushNotifications : Bool;
+    readReceiptsEnabled : Bool;
+    showOnlineStatus : Bool;
+    theme : Text;
+    twoFactorEnabled : Bool;
+    videoQuality : Text
+  };
+type Video__127466529 =
+  {
+    createdAt : Int;
+    creator : Principal;
+    description : Text;
+    hashtags : [Text];
+    id : Text;
+    thumbnailKey : Text;
+    title : Text;
+    videoKey : Text;
+    views : Nat
+  };
+actor {
+  stable var _activityStatuses : [(Text, ActivityStatus__152715502)];
+  stable var _callSignalCounter : Nat;
+  stable var _callSignals : [(Text, CallSignal__716495205)];
+  stable var _commentCounter : Nat;
+  stable var _comments : [(Text, Comment__473346131)];
+  stable var _coverPhotoKeys : [(Text, Text)];
+  stable var _duetCounter : Nat;
+  stable var _duets : [(Text, Duet__858239070)];
+  stable var _followRequestCounter : Nat;
+  stable var _followRequests : [(Text, FollowRequest__661292758)];
+  stable var _following : [(Text, [Principal])];
+  stable var _hiddenVideos : [(Text, [Text])];
+  stable var _likes : [(Text, [Principal])];
+  stable var _matchCounter : Nat;
+  stable var _matches : [(Text, Match__564601088)];
+  stable var _messageCounter : Nat;
+  stable var _messageReactionCounter : Nat;
+  stable var _messageReactions : [(Text, MessageReaction__746841266)];
+  stable var _messages : [(Text, Message__19119041)];
+  stable var _notifCounter : Nat;
+  stable var _notifications : [(Text, Notification__879889657)];
+  stable var _pinnedMessages : [(Text, PinnedMessage__707970224)];
+  stable var _pinnedVideos : [(Text, Text)];
+  stable var _postCounter : Nat;
+  stable var _postLikes : [(Text, [Principal])];
+  stable var _posts : [(Text, Post__955439577)];
+  stable var _reelDraftCounter : Nat;
+  stable var _reelDrafts : [(Text, ReelDraft__569559091)];
+  stable var _reportCounter : Nat;
+  stable var _reports : [(Text, Report__89520890)];
+  stable var _savedVideos : [(Text, [Text])];
+  stable var _stories : [(Text, Story__270542992)];
+  stable var _storyCommentCounter : Nat;
+  stable var _storyComments : [(Text, StoryComment__360357830)];
+  stable var _storyCounter : Nat;
+  stable var _storyReactionCounter : Nat;
+  stable var _storyReactions : [(Text, StoryReaction__237662789)];
+  stable var _storyViews : [(Text, [Text])];
+  stable var _swipedLeft : [(Text, [Text])];
+  stable var _swipedRight : [(Text, [Text])];
+  stable var _userSettings : [(Text, UserSettings__590554603)];
+  stable var _users : [(Text, UserProfile__491224006)];
+  stable var _videoCounter : Nat;
+  stable var _videos : [(Text, Video__127466529)];
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable var activityStatuses :
+    {
+      var root : Node__46230540<Text, ActivityStatus__152715502>;
+      var size : Nat__490723111
+    };
+  stable var callSignals :
+    {
+      var root : Node__46230540<Text, CallSignal__716495205>;
+      var size : Nat__490723111
+    };
+  stable var comments :
+    {
+      var root : Node__46230540<Text, Comment__473346131>;
+      var size : Nat__490723111
+    };
+  stable var coverPhotoKeys :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable var duets :
+    {
+      var root : Node__46230540<Text, Duet__858239070>;
+      var size : Nat__490723111
+    };
+  stable var followRequests :
+    {
+      var root : Node__46230540<Text, FollowRequest__661292758>;
+      var size : Nat__490723111
+    };
+  stable var following :
+    {var root : Node__46230540<Text, [Principal]>; var size : Nat__490723111};
+  stable var hiddenVideos :
+    {var root : Node__46230540<Text, [Text]>; var size : Nat__490723111};
+  stable var likes :
+    {var root : Node__46230540<Text, [Principal]>; var size : Nat__490723111};
+  stable var matches :
+    {
+      var root : Node__46230540<Text, Match__564601088>;
+      var size : Nat__490723111
+    };
+  stable var messageReactions :
+    {
+      var root : Node__46230540<Text, MessageReaction__746841266>;
+      var size : Nat__490723111
+    };
+  stable var messages :
+    {
+      var root : Node__46230540<Text, Message__19119041>;
+      var size : Nat__490723111
+    };
+  stable var notifications :
+    {
+      var root : Node__46230540<Text, Notification__879889657>;
+      var size : Nat__490723111
+    };
+  stable var pinnedMessages :
+    {
+      var root : Node__46230540<Text, PinnedMessage__707970224>;
+      var size : Nat__490723111
+    };
+  stable var pinnedVideos :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable var postLikes :
+    {var root : Node__46230540<Text, [Principal]>; var size : Nat__490723111};
+  stable var posts :
+    {
+      var root : Node__46230540<Text, Post__955439577>;
+      var size : Nat__490723111
+    };
+  stable var reelDrafts :
+    {
+      var root : Node__46230540<Text, ReelDraft__569559091>;
+      var size : Nat__490723111
+    };
+  stable var reports :
+    {
+      var root : Node__46230540<Text, Report__89520890>;
+      var size : Nat__490723111
+    };
+  stable var savedVideos :
+    {var root : Node__46230540<Text, [Text]>; var size : Nat__490723111};
+  stable var stories :
+    {
+      var root : Node__46230540<Text, Story__270542992>;
+      var size : Nat__490723111
+    };
+  stable var storyComments :
+    {
+      var root : Node__46230540<Text, StoryComment__360357830>;
+      var size : Nat__490723111
+    };
+  stable var storyReactions :
+    {
+      var root : Node__46230540<Text, StoryReaction__237662789>;
+      var size : Nat__490723111
+    };
+  stable var storyViews :
+    {var root : Node__46230540<Text, [Text]>; var size : Nat__490723111};
+  stable var swipedLeft :
+    {var root : Node__46230540<Text, [Text]>; var size : Nat__490723111};
+  stable var swipedRight :
+    {var root : Node__46230540<Text, [Text]>; var size : Nat__490723111};
+  stable twentyFourHours : Int;
+  stable var userSettings :
+    {
+      var root : Node__46230540<Text, UserSettings__590554603>;
+      var size : Nat__490723111
+    };
+  stable var users :
+    {
+      var root : Node__46230540<Text, UserProfile__491224006>;
+      var size : Nat__490723111
+    };
+  stable var videos :
+    {
+      var root : Node__46230540<Text, Video__127466529>;
+      var size : Nat__490723111
+    }
+};

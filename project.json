@@ -1,0 +1,30 @@
+{
+  "overview": "VibeFlow v40 — a complete full-stack social video app (TikTok + Instagram + Tinder) built as a brand-new standalone project. Features vertical snap video feed, stories, Tinder-style matching, WhatsApp-style chat, WebRTC video/audio calls, creator profiles, live rooms, and 30+ features — all backend-driven with lazy loading for 1M users.",
+  "features": [
+    "Vertical snap-scroll video feed with lazy loading and autoplay",
+    "Stories with 24h expiry, reactions, polls, highlights",
+    "Tinder-style matching with swipe cards and It's a Match overlay",
+    "WhatsApp/Instagram-style chat with emoji reactions, typing indicators, read receipts",
+    "Real WebRTC peer-to-peer video and audio calls with incoming call overlay",
+    "Creator profiles with premium tiers, analytics, achievement badges",
+    "Explore with For You, Following, Trending, Popular tabs",
+    "Hashtag pages, trending tags, creator leaderboard",
+    "Notifications with inline actions (follow back, accept/decline)",
+    "Settings with 18+ backend-driven fields",
+    "Love theme UI — rose-pink, gold, Playfair Display, iOS mobile-first",
+    "Lazy loading everywhere — cursor pagination, skeleton screens, optimistic updates"
+  ],
+  "category": "social",
+  "tags": [
+    "social",
+    "video",
+    "tiktok",
+    "instagram",
+    "tinder",
+    "chat",
+    "webrtc",
+    "lazy-loading",
+    "mobile-first"
+  ],
+  "last_updated": "2026-04-13T07:09:27.306Z"
+}

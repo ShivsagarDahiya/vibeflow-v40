@@ -1,0 +1,291 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/Playfair.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    --background: 0.1 0.012 15;
+    --foreground: 0.94 0.008 60;
+    --card: 0.15 0.018 15;
+    --card-foreground: 0.94 0.008 60;
+    --popover: 0.15 0.018 15;
+    --popover-foreground: 0.94 0.008 60;
+    --primary: 0.65 0.22 10;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.2 0.018 15;
+    --secondary-foreground: 0.94 0.008 60;
+    --muted: 0.22 0.015 15;
+    --muted-foreground: 0.6 0.01 15;
+    --accent: 0.78 0.14 75;
+    --accent-foreground: 0.1 0 0;
+    --destructive: 0.6 0.22 25;
+    --destructive-foreground: 0.94 0.008 60;
+    --border: 0.22 0.018 15;
+    --input: 0.22 0.018 15;
+    --ring: 0.65 0.22 10;
+    --chart-1: 0.65 0.22 10;
+    --chart-2: 0.55 0.2 340;
+    --chart-3: 0.78 0.14 75;
+    --chart-4: 0.7 0.16 280;
+    --chart-5: 0.75 0.18 130;
+    --sidebar: 0.15 0.018 15;
+    --sidebar-foreground: 0.94 0.008 60;
+    --sidebar-primary: 0.65 0.22 10;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.2 0.018 15;
+    --sidebar-accent-foreground: 0.94 0.008 60;
+    --sidebar-border: 0.22 0.018 15;
+    --sidebar-ring: 0.65 0.22 10;
+
+    /* Love theme custom tokens */
+    --love-primary: oklch(0.65 0.22 10);
+    --love-secondary: oklch(0.55 0.2 340);
+    --love-gold: oklch(0.78 0.14 75);
+    --love-glow: 0 0 20px oklch(0.65 0.22 10 / 0.4);
+    --love-gradient: linear-gradient(
+      135deg,
+      oklch(0.65 0.22 10),
+      oklch(0.55 0.2 340)
+    );
+    --love-dark-gradient: linear-gradient(
+      135deg,
+      oklch(0.2 0.04 10),
+      oklch(0.15 0.03 340)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  /* Gradient utilities */
+  .love-gradient {
+    background: var(--love-gradient);
+  }
+
+  .love-dark-gradient {
+    background: var(--love-dark-gradient);
+  }
+
+  .love-glow {
+    box-shadow: var(--love-glow);
+  }
+
+  /* iOS elevation shadows */
+  .shadow-ios-sm {
+    box-shadow: 0 1px 3px oklch(0 0 0 / 0.12), 0 1px 2px oklch(0 0 0 / 0.24);
+  }
+
+  .shadow-ios-md {
+    box-shadow: 0 3px 6px oklch(0 0 0 / 0.16), 0 3px 6px oklch(0 0 0 / 0.23);
+  }
+
+  .shadow-ios-lg {
+    box-shadow: 0 10px 20px oklch(0 0 0 / 0.19), 0 6px 6px oklch(0 0 0 / 0.23);
+  }
+
+  /* Transition utilities */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-fast {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* WhatsApp chat bubble styles */
+  .chat-bubble-sent {
+    background: var(--love-gradient);
+    border-radius: 18px 18px 4px 18px;
+  }
+
+  .chat-bubble-received {
+    background: oklch(0.22 0.018 15);
+    border-radius: 18px 18px 18px 4px;
+    border: 1px solid oklch(0.3 0.015 15);
+  }
+
+  /* Scrollbar hiding */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Settings iOS-style section */
+  .settings-section {
+    background: oklch(0.15 0.018 15);
+    border-radius: 12px;
+    border: 1px solid oklch(0.22 0.018 15);
+  }
+
+  /* iOS toggle switch */
+  .toggle-ios {
+    position: relative;
+    appearance: none;
+    width: 51px;
+    height: 31px;
+    background: oklch(0.3 0.01 15);
+    border-radius: 15.5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .toggle-ios:checked {
+    background: oklch(0.65 0.22 10);
+  }
+
+  .toggle-ios:before {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: white;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+  }
+
+  .toggle-ios:checked:before {
+    left: 22px;
+  }
+
+  /* Notification badge */
+  .badge-notification {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: oklch(0.65 0.22 10);
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.2);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.5);
+  }
+}
+
+@keyframes ringRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.65 0.22 10 / 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px oklch(0.65 0.22 10 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.65 0.22 10 / 0);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-float-up {
+  animation: floatUp 1s ease-out forwards;
+}
+
+.animate-ring-rotate {
+  animation: ringRotate 3s linear infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
